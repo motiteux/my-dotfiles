@@ -1,0 +1,4 @@
+#!/bin/bash
+((rsync -a --no-o --no-g -u --delete --stats --exclude-from=/work/irlin168_1/titeuxm/PersoFiles/exclude.ifpen --include-from=/work/irlin168_1/titeuxm/PersoFiles/include.ifpen /work/irlin168_1/titeuxm/Developpements/Python/ /media/MYLINUXLIVE/TRANSFER/IFPEN_dev 2>&1 1>&3 | tee /media/MYLINUXLIVE/TRANSFER/rsync_dev_errors.log) 3>&1 1>&2 | tee /media/MYLINUXLIVE/TRANSFER/rsync_dev_output.log) >| /media/MYLINUXLIVE/TRANSFER/IFPEN_RWS/rsync_final.log 2>&1
+
+((rsync -a --no-o --no-g -u --delete --stats --exclude-from=/work/irlin168_1/titeuxm/PersoFiles/exclude.ifpen --include-from=/work/irlin168_1/titeuxm/PersoFiles/include.ifpen /home/irsrvhome1/R13/titeuxm/work/ReadWriteSpeak/ /media/MYLINUXLIVE/TRANSFER/IFPEN_RWS 2>&1 1>&3 | tee /media/MYLINUXLIVE/TRANSFER/rsync_rws_errors.log) 3>&1 1>&2 | tee /media/MYLINUXLIVE/TRANSFER/rsync_rws_output.log) >| /media/MYLINUXLIVE/TRANSFER/rsync_rws_final.log 2>&1

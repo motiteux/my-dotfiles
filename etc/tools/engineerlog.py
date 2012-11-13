@@ -10,13 +10,20 @@ So either I have to write a blog entry about it so that I can find it in
 google, or I need to add it to a simple text-based logfile somewhere. That's
 what this script does.
 
+Usage
+-----
+python ~\tools\engineerlog.py 
+
+and enter text
+
 """
+
 import logging
 import os
 
 
 LOGFILE = "~/engineer.log"
-# ^^^ This one should be symlinked into some version controlled directory.
+# ^^^ This one should be symlinked into some version controlld directory.
 SEPARATOR = '\n-----'
 
 logger = logging.getLogger('engineer')

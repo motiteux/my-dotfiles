@@ -5,7 +5,7 @@ import sys
 
 OMIT = ['__init__.py',
         ]
-BASE_GITHUB_URL = 'https://github.com/reinout/tools/blob/master/tools/'
+BASE_GITHUB_URL = 'https://bitbucket.org/marc_olivier/myenvi/src/'
 README_HEADER = """
 Python script documentation
 ===========================
@@ -21,7 +21,7 @@ SCRIPT_TEMPLATE = """
 
 {documentation}
 
-(See `source code on github <{github_url}>`_).
+(See `source code on bitbucket <{github_url}>`_).
 
 """
 
@@ -29,7 +29,7 @@ SCRIPT_TEMPLATE = """
 def main():
     """Find the Python files and collect their inline documentation."""
     readme = README_HEADER
-    os.chdir('tools')
+    os.chdir('etc\tools')
     scripts = [script for script in os.listdir('.')
                if script.endswith('.py') and script not in OMIT]
     for script in scripts:
