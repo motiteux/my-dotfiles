@@ -1,0 +1,109 @@
+#-------------------------------------------------------------
+# Source global definitions (if any)
+#-------------------------------------------------------------
+if ! shopt -q login_shell ; then # We're not a login shell
+    # Need to redefine pathmunge, it get's undefined at the end of /etc/profile
+    pathmunge () {
+        if ! echo $PATH | /bin/egrep -q "(^|:)$1($|:)" ; then
+            if [ "$2" = "after" ] ; then
+                PATH=$PATH:$1
+            else
+                PATH=$1:$PATH
+            fi
+        fi
+    }
+
+    # Only display echos from profile.d scripts if we are no login shell
+    # and interactive - otherwise just process them to set envvars
+    for i in /etc/profile.d/*.sh; do
+        if [ -r "$i" ]; then
+            if [ "$i" == "kde.sh" ] || [ "$i" == "qt.sh" ]; then
+                continue
+            else
+                if [ "$PS1" ]; then
+                    . $i
+                else
+                    . $i >/dev/null 2>&1
+                fi
+            fi
+        fi
+    done
+fi
+
+#-------------------------------------------------------------
+# Automatic setting of $DISPLAY (if not set already).
+# This works for linux - your mileage may vary. ... 
+# The problem is that different types of terminals give
+# different answers to 'who am i' (rxvt in particular can be
+# troublesome).
+# I have not found a 'universal' method yet.
+#-------------------------------------------------------------
+function get_xserver ()
+{
+    case $TERM in
+       xterm )
+            XSERVER=$(who am i | awk '{print $NF}' | tr -d ')''(' ) 
+            # Ane-Pieter Wieringa suggests the following alternative:
+            # I_AM=$(who am i)
+            # SERVER=${I_AM#*(}
+            # SERVER=${SERVER%*)}
+
+            XSERVER=${XSERVER%%:*}
+            ;;
+        aterm | rxvt)
+        # Find some code that works here. ...
+            ;;
+    esac  
+}
+
+if [ -z ${DISPLAY:=""} ]; then
+    get_xserver
+    if [[ -z ${XSERVER}  || ${XSERVER} == $(hostname) || \
+        ${XSERVER} == "unix" ]]; then 
+        DISPLAY=":0.0"          # Display on local host.
+    else
+        DISPLAY=${XSERVER}:0.0  # Display on remote host.
+    fi
+fi
+
+export DISPLAY
+
+# Pour permettre de taper des caractÃšres accentuÃ©s dans le shell :
+bind 'set convert-meta off'
+
+#-------------------------------------------------------------
+# Some settings
+#-------------------------------------------------------------
+ulimit -S -c 1000000          # Limit coredump size
+set -o notify
+set -o noclobber
+set -o ignoreeof
+#set -o nounset
+#set -o xtrace          # Useful for debuging.
+
+# Enable options:
+shopt -s cdspell
+shopt -s cdable_vars
+shopt -s checkhash
+shopt -s checkwinsize
+shopt -s sourcepath
+shopt -s no_empty_cmd_completion
+shopt -s cmdhist
+
+shopt -s extglob        # Necessary for programmable completion.
+
+
+# Don t want my shell to warn me of incoming mail.
+# Disable options:
+shopt -u mailwarn
+unset MAILCHECK 
+
+shopt -s histappend histreedit histverify
+
+# supporte des terminaux redimensionnables (xterm et screen -r)
+shopt -s checkwinsize
+
+# setting up del key in terminal
+if tty --quiet ; then
+    stty erase '^?'
+fi

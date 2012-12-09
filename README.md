@@ -1,3 +1,26 @@
+It is a tool to deploy myself... Well, my user environment.
+
+Often times, I change machine, switch to cloud development solution, need to 
+deploy a development or station environment somewhere else. Or my machine 
+crashes completely.
+
+I want to have a cloud-based (at least distributed), version-controlled, easily 
+deployable (i.e. displaying availability, atomicity, and consistency) solution. 
+If possible, it would be nice to have a common interface from Windows to Linux. 
+But as a start, this solution will be dedicated to Linux only.
+
+I am essentially using bash, so there will be bash-related configurations. 
+However, except from pure bash, the tool is written in python.
+
+This is a simple dot-file management package, inspired by reinout (https://github.com/reinout/tools)
+and others.
+
+The principle
+=============
+
+The package has to be cloned in $HOME.
+    $HOME/etc contains files to be deployed on the account
+
 Setup
 =====
 

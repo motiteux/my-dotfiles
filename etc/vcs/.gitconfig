@@ -1,0 +1,59 @@
+[user]
+    name = Marc-Olivier Titeux
+    email = marcolivier.titeux@orange.ch
+
+[diff]
+    tool = diffmeld
+
+[difftool "diffmerge"]
+    cmd = "meld $LOCAL $REMOTE"
+
+[merge]
+    tool = diffmerge
+
+[mergetool "diffmerge"]
+    trustExitCode = true
+    cmd = "meld $LOCAL $REMOTE $MERGED"
+    keepBackup = false
+
+[http]
+    sslverify = false
+
+[core]
+    editor = vim
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    excludesfile = ~/.gitignore
+
+[sendemail]
+    smtpencryption = tls
+    smtpserver = smtp.gmail.com
+    smtpuser = marcolivier.titeux@gmail.com
+    smtppass = M3k4N2dl1oi7x36Lf89F908A6%$DDE
+    smtpserverport = 587
+
+[web]
+    browser = firefox
+
+[rerere]
+    enabled = 1
+    autoupdate = 1
+
+[color]
+    ui = always
+
+[color "branch"]
+    current = yellow bold
+    local = green bold
+    remote = cyan bold
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+
+[color "status"]
+    added = green bold
+    changed = yellow bold
+    untracked = red bold

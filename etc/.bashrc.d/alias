@@ -1,4 +1,3 @@
-#!/bin/bash -e
 #===============================================================
 #
 # ALIASES AND FUNCTIONS
@@ -15,17 +14,34 @@
 #-------------------
 # Personnal Aliases
 #-------------------
+alias set_proxy='export http_proxy=http://ser_web_ldap:nefast110205..01@172.25.25.231:8080;export https_proxy=http://ser_web_ldap:nefast110205..01@172.25.25.231:8080'
+
+alias pipup='pip freeze --local | cut -d = -f 1  | xargs pip install -U'
+
+function pipdep() {
+    list_pckg=`pip freeze --local | cut -d = -f 1`
+    for packa in $list_pckg
+    do 
+        pip show $packa
+    done
+}
+
+alias eclipse='/opt/eclipse/eclipse-4.2.1/eclipse'
+alias svi='sudo vi'
+
+alias epass='echo nefast110205..01'
 
 alias grep='grep --color=auto'
 
-alias rm='rm -i'
+#alias rm='rm -i'
+alias rm=~/bin/rm_safe
 alias cp='cp -i'
 alias mv='mv -i'
 # -> Prevents accidentally clobbering files.
 alias mkdir='mkdir -p'
 
 alias hh='history'
-alias hg='hh | grep'
+alias hgr='hh | grep'
 alias j='jobs -l'
 alias ..='cd ..'
 alias path='echo -e ${PATH//:/\\n}'
@@ -34,7 +50,12 @@ alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 alias du='du -kh'       # Makes a more readable output.
 alias df='df -kTh'
 
-alias dropboxd='/home/irsrvhome1/R13/titeuxm/.dropbox-dist/dropboxd'
+#------------------------
+# Github shortener gitio
+#------------------------
+function gitio() {
+    curl -i http://git.io -F "url=$@"
+}
 
 #-------------------------------------------------------------
 # The 'ls' family (this assumes you use a recent GNU ls)
@@ -68,40 +89,6 @@ alias vf='cd'
 alias moer='more'
 alias moew='more'
 alias kk='ll'
-
-#-------------------------------------------------------------
-#  GOCAD, SKUA, and other modeling stuff
-#-------------------------------------------------------------
-
-# export GOCAD_HOME=/home/irsrvshare2/R13/F177/PDGM/SKUA-GOCAD-2011-Officiel
-# export PATH=$GOCAD_HOME/Gocad/bin:$PATH
-
-#export GOCADLMD_LICENSE_FILE=1860@irlinv-lic1:1860@irlinv-lic2:1860@irlinv-lic3
-#export PRDM_GEO_LICENSE_FILE=1860@irlinv-lic1:1860@irlinv-lic2:1860@irlinv-lic3
-
-export GOCADLMD_LICENSE_FILE=@licsrv-nancy
-export PRDM_GEO_LICENSE_FILE=@licsrv-nancy
-
-#export GOCADLMD_LICENSE_FILE=7507@irlin143
-#export PRDM_GEO_LICENSE_FILE=7507@irlin143
-
-#export PRDM_GEO_LICENSE_FILE=7507@irpcm300461
-#export GOCADLMD_LICENSE_FILE=7507@irpcm300461
-
-
-export GOCAD_LICENSE=dsl
-export QTDIR=/home/irsrvshare2/R13/F177/PDGM/Toolkits/Qt/qt-4.7.3
-export QMAKESPEC=linux-g++
-
-alias skua_off='/home/irsrvshare2/R13/F177/PDGM/SKUA-GOCAD-2011-Officiel/bin/SKUA'
-alias gocad_off='/home/irsrvshare2/R13/F177/PDGM/SKUA-GOCAD-2011-Officiel/bin/Gocad'
-alias gocad_dev='. setvars.sh >| /tmp/stderr 2>&1  && /home/irsrvshare2/R13/F177/PDGM/SKUA-GOCAD-2011.1a1/Gocad/bin/linux-amd64-re5-gcc/gocad_run -suite=skua -user-level-debug /work/irlin168_1/titeuxm/tmp/opening_project2011.1.sprj 2>| /tmp/stderr'
-
-alias qmake='/home/irsrvhome1/R13/titeuxm/PDGM/Toolkits/Qt/qt-4.7.3/bin/qmake'
-
-alias skuacluster='vglrun `skua_off`'
-alias gocadcluster='vglrun `gocad_off`'
-
 
 #-------------------------------------------------------------
 # A few fun ones
@@ -184,7 +171,7 @@ Usage: fstr [-i] \"pattern\" [\"filename pattern\"] "
         return;
     fi
     find . -type f -name "${2:-*}" -print0 | \
-    xargs -0 egrep --color=always -sn ${case} "$1" 2>&- | more
+    xargs -0 egrep --color=always -sn ${case} "$1" 2>&- | more 
 
 }
 
@@ -216,13 +203,13 @@ function lowercase()  # move filenames to lowercase
 
 function swap()  # Swap 2 filenames around, if they exist
 {                #(from Uzi's bashrc).
-    local TMPFILE=tmp.$$
+    local TMPFILE=tmp.$$ 
 
     [ $# -ne 2 ] && echo "swap: 2 arguments needed" && return 1
     [ ! -e $1 ] && echo "swap: $1 does not exist" && return 1
     [ ! -e $2 ] && echo "swap: $2 does not exist" && return 1
 
-    mv "$1" $TMPFILE
+    mv "$1" $TMPFILE 
     mv "$2" "$1"
     mv $TMPFILE "$2"
 }
@@ -299,10 +286,10 @@ function ask()          # See 'killps' for example of use.
 }
 
 function corename()   # Get name of app that created a corefile.
-{
+{ 
     for file ; do
         echo -n $file : ; /work/irlin168_1/titeuxm/Apps/bin/gdb --core=$file --batch | head -1
-    done
+    done 
 }
 
 
@@ -393,11 +380,11 @@ complete -f -o default -X '!*.pl'  perl perl5
 COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
 
 
-_get_longopts()
-{
+_get_longopts() 
+{ 
     #$1 --help | sed  -e '/--/!d' -e 's/.*--\([^[:space:].,]*\).*/--\1/'| \
 #grep ^"$2" |sort -u ;
-    $1 --help | grep -o -e "--[^[:space:].,]*" | grep -e "$2" |sort -u
+    $1 --help | grep -o -e "--[^[:space:].,]*" | grep -e "$2" |sort -u 
 }
 
 _longopts()
@@ -583,7 +570,7 @@ _meta_comp()
     COMPREPLY=()
     cur=${COMP_WORDS[COMP_CWORD]}
     cmdline=${COMP_WORDS[@]}
-    if [ $COMP_CWORD = 1 ]; then
+    if [ $COMP_CWORD = 1 ]; then  
          COMPREPLY=( $( compgen -c $cur ) )
     else
         cmd=${COMP_WORDS[1]}            # Find command.
@@ -613,25 +600,14 @@ _meta_comp()
         fi
 
     fi
-
+    
 }
-
 
 complete -o default -F _meta_comp nohup \
 eval exec trace truss strace sotruss gdb
 complete -o default -F _meta_comp command type which man nice time
 
-
-
 #=========================================================================
 # SYSTEM ALIASES (Computing, Sytem and Development)
 #=========================================================================
 
-# Copied from system-wide-cshrc's
-# Have to be re-written in bash
-
-alias vmware='nohup /usr/bin/vmplayer /vmware/virtualmachine >&/dev/null &'
-alias vmplayer='nohup /usr/bin/vmplayer /vmware/virtualmachine >&/dev/null &'
-
-alias acces2='set logiciel=(\!*) ; source /usr/soft/system/env/acces_liste'
-alias list_acces2='source /usr/soft/system/env/list_of_acces'

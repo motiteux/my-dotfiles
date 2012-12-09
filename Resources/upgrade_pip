@@ -1,1 +1,0 @@
-pip freeze --local | cut -d = -f 1  | xargs pip install -U
