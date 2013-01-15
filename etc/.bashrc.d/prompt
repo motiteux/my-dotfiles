@@ -3,5 +3,6 @@
 #-------------------------------------------------------------
 
 # set a fancy prompt, git integration (non-color, unless we know we "want" color)
-source ~/.git-completion.bash
+source ~/.bashrc.d/.git-completion
+source ~/.bashrc.d/.git-prompt
 export PS1='[\t] \[\e[01;32m\]\u@\h:\[$(tput sgr0)$(tput setaf 5)\]\W\[$(tput sgr0)$(tput setaf 2)\] $(__git_ps1 "[%s]") \[$(tput sgr0)\]$ '

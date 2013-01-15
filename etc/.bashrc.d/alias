@@ -26,10 +26,8 @@ function pipdep() {
     done
 }
 
-alias eclipse='/opt/eclipse/eclipse-4.2.1/eclipse'
+alias eclipse='/opt/software/eclipse/eclipse-4.2.1/eclipse'
 alias svi='sudo vi'
-
-alias epass='echo nefast110205..01'
 
 alias grep='grep --color=auto'
 

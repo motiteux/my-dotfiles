@@ -2,64 +2,34 @@
 #                    END OF IMPORTED BASHRC                   #
 ###############################################################
 
-if  [[ `/sbin/ifconfig em1 | grep "inet addr" | awk -F: '{print $2}' | awk '{print $1}'` == *172.27* ]];then
-    # set Intranet Proxy
-    export HTTP_PROXY=http://ser_web_ldap:nefast110205..01@172.25.25.231:8080
-    export HTTPS_PROXY=$HTTP_PROXY
-    export http_proxy=$HTTP_PROXY
-    export https_proxy=$HTTP_PROXY
-    export RSYNC_PROXY=$HTTP_PROXY
-    export SVN_PROXY=$HTTP_PROXY
-else
-    # reset Intranet Proxy
-    unset HTTP_PROXY
-    unset HTTPS_PROXY
-    unset http_proxy
-    unset RSYNC_PROXY
-    unset SVN_PROXY
-fi
-
 export SHELL=/bin/bash
-export PREFIX_INSTALL=/opt/install
-
-# Add your own bash tweaks
-# Setting up MANPATH, PATH and LD_LIBRARY_PATH
-#
-if [ -n "$LD_LIBRARY_PATH" ]; then
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64:/lib64:/usr/lib:/lib:/usr/soft/lib
-else
-    export LD_LIBRARY_PATH=/usr/lib64:/lib64:/usr/lib:/lib:/usr/soft/lib
-fi
-
-if [ -n "$MANPATH" ]; then
-   export MANPATH=${MANPATH}:/usr/share/man:/usr/X11R6/man:/usr/kerberos/man:/usr/soft/man
-else
-   export MANPATH=/usr/share/man:/usr/X11R6/man:/usr/kerberos/man:/usr/soft/man
-fi
-
-## export JAVA_HOME JDK/JRE ##
+export PREFIX_INSTALL=/opt/software
 export JAVA_HOME="/usr/java/latest"
 
-
-export SVN_ROOT="http://ochci.orange.ch/svn/kms"
-
-# Add home bin and libs to path
-PATH=$PATH:~/bin:/opt/bin:/opt/install:/home/mtiteux/.local/bin:$PREFIX_INSTALL/eclipse/eclipse-4.2
-
-export PATH LD_LIBRARY_PATH LD_RUN_PATH
-
+# Python
 [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
+export PYTHONBREW_ROOT=/usr/local/pythonbrew
 
-pip completion --bash >> ~/.profile
+PYTHON_USED=`pythonbrew list |  grep -A1 '(*)' | awk '{print $1}'`
+PYTHON_VER=`echo "${PYTHON_USED##*-}"`
+if [ "X$PYTHON_VER" = "X0" ]; then
+    :
+else
+    pip completion --bash >> ~/.bashrc.d/.profile
+    
+    source ~/.bashrc.d/.django_bash_completion
 
-export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_TMPDIR="$WORKON_HOME/tmp"
-export VIRTUALENVWRAPPER_VIRTUALENV=/home/mtiteux/.pythonbrew/pythons/Python-2.7.2/bin/virtualenv
-export VIRTUALENVWRAPPER_PYTHON=/home/mtiteux/.pythonbrew/pythons/Python-2.7.2/bin/python
-source /home/mtiteux/.pythonbrew/pythons/Python-2.7.2/bin/virtualenvwrapper.sh
-export PIP_VIRTUALENV_BASE=$WORKON_HOME # Tell pip to create its virtualenvs in $WORKON_HOME.
-export PIP_RESPECT_VIRTUALENV=true # Tell pip to automatically use the currently active virtualenv.
-export PIP_REQUIRE_VIRTUALENV=false # Tell pip to run only if there is a virtualenv currently activated
+	export WORKON_HOME=$HOME/.virtualenvs
+	export VIRTUALENVWRAPPER_TMPDIR="$WORKON_HOME/tmp"
+	export VIRTUALENVWRAPPER_LOG_DIR="$WORKON_HOME"
+	export VIRTUALENVWRAPPER_HOOK_DIR="$WORKON_HOME"
+	export VIRTUALENVWRAPPER_VIRTUALENV=$PYTHONBREW_ROOT/pythons/Python-$PYTHON_VER/bin/virtualenv
+	export VIRTUALENVWRAPPER_PYTHON=$PYTHONBREW_ROOT/pythons/Python-$PYTHON_VER/bin/python
+	source $PYTHONBREW_ROOT/pythons/Python-$PYTHON_VER/bin/virtualenvwrapper.sh
+	export PIP_VIRTUALENV_BASE=$WORKON_HOME # Tell pip to create its virtualenvs in $WORKON_HOME.
+	export PIP_RESPECT_VIRTUALENV=true # Tell pip to automatically use the currently active virtualenv.
+	export PIP_REQUIRE_VIRTUALENV=false # Tell pip to run only if there is a virtualenv currently activated
+fi
 
 
 export TIMEFORMAT=$'\nreal %3R\tuser %3U\tsys %3S\tpcpu %P\n'

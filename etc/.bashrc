@@ -8,8 +8,12 @@
 # Check for an interactive session
 [ -z "$PS1" ] && return
 
-source /etc/profile
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
 
+# Sourcing all sub config files
 if [ -d ~/.bashrc.d/ ]; then
     for s in ~/.bashrc.d/*; do
         source $s
