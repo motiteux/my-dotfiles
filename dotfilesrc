@@ -1,0 +1,14 @@
+[dotfiles]
+repository = ~/Dotfiles
+ignore = [
+    '.git',
+    'dev',
+    '*.swp',
+    '.[a-zA-Z]~',
+    '.pydevproject',
+    '.project',
+    'TODO.md',
+    'README.md',
+    'from_ctp']
+externals = {
+    '.bzr.log':     '/dev/null'}

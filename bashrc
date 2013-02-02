@@ -10,12 +10,14 @@
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+	source /etc/bashrc
 fi
 
 # Sourcing all sub config files
 if [ -d ~/.bashrc.d/ ]; then
     for s in ~/.bashrc.d/*; do
-        source $s
+	if [[ -f $s ]]; then
+		source $s
+	fi
     done;
 fi

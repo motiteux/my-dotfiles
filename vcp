@@ -19,7 +19,7 @@ color = "blue2"
 screen = "keywait"
 
 # flags to enable
-flags = ""
+flags = "tRuv"
 
 # read buffer size (leave blank for default)
 readbuf = ""

@@ -82,8 +82,8 @@ function ll_perso()
 }
 
 
-alias ll='ls -l --group-directories-first'
-#alias ll='ll_perso'
+#alias ll='ls -l --group-directories-first'
+alias ll='ll_perso'
 
 #-------------------------------------------------------------
 # spelling typos - highly personnal and keyboard-dependent :-)
@@ -614,4 +614,4 @@ complete -o default -F _meta_comp command type which man nice time
 
 #=========================================================================
 # SYSTEM ALIASES (Computing, Sytem and Development)
-#=========================================================================
+

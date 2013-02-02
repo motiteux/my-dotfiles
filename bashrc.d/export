@@ -2,6 +2,7 @@
 #                    END OF IMPORTED BASHRC                   #
 ###############################################################
 
+export PATH=$PATH:~/.bin
 export SHELL=/bin/bash
 export PREFIX_INSTALL=/opt/software
 export JAVA_HOME="/usr/java/latest"
@@ -13,11 +14,11 @@ export PYTHONBREW_ROOT=/usr/local/pythonbrew
 PYTHON_USED=`pythonbrew list |  grep -A1 '(*)' | awk '{print $1}'`
 PYTHON_VER=`echo "${PYTHON_USED##*-}"`
 if [ "X$PYTHON_VER" = "X0" ]; then
-    :
+	:
 else
-    pip completion --bash >> ~/.bashrc.d/.profile
+	pip completion --bash >> ~/.bashrc.d/sub_script/profile
     
-    source ~/.bashrc.d/.django_bash_completion
+	source ~/.bashrc.d/sub_script/django_bash_completion
 
 	export WORKON_HOME=$HOME/.virtualenvs
 	export VIRTUALENVWRAPPER_TMPDIR="$WORKON_HOME/tmp"
@@ -48,3 +49,4 @@ export HISTSIZE=10000
 export HISTFILESIZE=20000
 export HISTTIMEFORMAT="%H:%M > "
 export HISTIGNORE="&:bg:fg:ll:h"
+
