@@ -31,10 +31,8 @@ nosetests.xml
 # Django specifics #
 ####################
 .installed.cfg
-bin
 develop-eggs
 dist
-downloads
 eggs
 parts
 src/*.egg-info
@@ -49,14 +47,11 @@ lib64
 
 # Packages #
 ############
-*.7z
 *.dmg
-*.gz
 *.iso
 *.jar
 *.rar
 *.tar
-*.zip
 
 # Logs and databases #
 ######################
