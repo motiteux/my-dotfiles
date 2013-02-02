@@ -1,0 +1,9 @@
+[dottfiles]
+repository = /opt/dvpt/MyTools/my-dotfiles
+ignore = [
+    '.git',
+    '.gitignore',
+    '*.swp']
+externals = {
+    '.bzr.log':     '/dev/null',
+    '.uml':         '/tmp'}
