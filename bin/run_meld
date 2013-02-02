@@ -1,0 +1,13 @@
+#!/bin/bash -i
+PYTHON_USED=`pythonbrew list |  grep -A1 '(*)' | awk '{print $1}'`
+PYTHON_VER=`echo "${PYTHON_USED##*-}"`
+if [ "X$PYTHON_VER" = "X0" ]; then
+    /usr/bin/meld
+else
+    echo "Setting temporarily Python version to 2.6.6"
+    pythonbrew off
+    echo "Running Meld 1.4.0"
+    /usr/bin/meld
+    echo "Switching back to Python version ${PYTHON_VER}"
+    pythonbrew switch $PYTHON_VER
+fi
