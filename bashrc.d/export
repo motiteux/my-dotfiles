@@ -5,7 +5,7 @@
 export PATH=$PATH:~/.bin
 export SHELL=/bin/bash
 export PREFIX_INSTALL=/opt/software
-export JAVA_HOME="/usr/java/latest"
+export JAVA_HOME=/usr/java/latest
 
 # Python
 [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
@@ -30,8 +30,9 @@ else
 	export PIP_VIRTUALENV_BASE=$WORKON_HOME # Tell pip to create its virtualenvs in $WORKON_HOME.
 	export PIP_RESPECT_VIRTUALENV=true # Tell pip to automatically use the currently active virtualenv.
 	export PIP_REQUIRE_VIRTUALENV=false # Tell pip to run only if there is a virtualenv currently activated
+	export PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache
+	export PIP_SDIST_INDEX=$PIP_DOWNLOAD_CACHE
 fi
-
 
 export TIMEFORMAT=$'\nreal %3R\tuser %3U\tsys %3S\tpcpu %P\n'
 export HOSTFILE=$HOME/.hosts    # Put list of remote hosts in ~/.hosts ...

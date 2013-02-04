@@ -17,6 +17,17 @@
 
 alias pipup='pip freeze --local | cut -d = -f 1  | xargs pip install -U'
 
+function pipinstall() {
+    if [[ $1 == "install" ]]; then
+        shift
+        pip install --no-install --exists-action w --use-mirrors -I --download=$PIP_SDIST_INDEX $@
+        pip install --find-links=file://$PIP_SDIST_INDEX --no-index --index-url=file:///dev/null $@
+    else
+        pip $@
+    fi
+}
+#alias pip=pipinstall
+
 function pipdep() {
     list_pckg=`pip freeze --local | cut -d = -f 1`
     for packa in $list_pckg
@@ -25,11 +36,30 @@ function pipdep() {
     done
 }
 
+###############
+# Development #
+###############
 alias eclipse='/opt/software/eclipse/eclipse-4.2.1/eclipse'
 
 # Colorized git log
 alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
+has_virtualenv() {
+    if [ -e .venv ]; then
+        workon `cat .venv`
+    fi
+}
+
+venv_cd () {
+    builtin cd "$@" && has_virtualenv
+}
+
+alias cd="venv_cd"
+
+
+##########
+# System #
+##########
 alias svi='sudo vi'
 alias grep='grep --color=auto'
 alias hh='history'
