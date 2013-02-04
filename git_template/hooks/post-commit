@@ -1,0 +1,12 @@
+#!/bin/sh
+ 
+TASK_DATE=`git log -1 HEAD --format=format:%ad --date=iso`
+TASK_NAME=`git log -1 HEAD --format=format:%s`
+  
+TASK_DATA="{\"time_entry\":{\"tag_names\":[\"${PWD##*/}\"],\"billable\":true,\"description\":\"$TASK_NAME\",\"start\":\"$TASK_DATE\",\"stop\":\"$TASK_DATE\",\"duration\":3600,\"created_with\":\"Git HOOK\"}}"
+   
+# Comment out this if your using OSX and you have growlnotify
+# growlnotify -m "Posting to TOGGL ${PWD##*/}: $TASK_NAME"
+    
+curl -u `cat ~/.toggl`:api_token -H "Content-type: application/json" -d "$TASK_DATA" -X POST https://www.toggl.com/api/v6/time_entries.json
+
