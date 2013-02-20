@@ -17,7 +17,7 @@ fi
 if [ -d ~/.bashrc.d/ ]; then
     for s in ~/.bashrc.d/*; do
 	if [[ -f $s ]]; then
-		source $s
+        source $s
 	fi
     done;
 fi

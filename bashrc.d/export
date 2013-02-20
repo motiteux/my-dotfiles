@@ -1,6 +1,4 @@
-###############################################################
-#                    END OF IMPORTED BASHRC                   #
-###############################################################
+#!/bin/bash
 
 export PATH=$PATH:~/.bin
 export SHELL=/bin/bash
@@ -8,10 +6,10 @@ export PREFIX_INSTALL=/opt/software
 export JAVA_HOME=/usr/java/latest
 
 # Python
-[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
 export PYTHONBREW_ROOT=/usr/local/pythonbrew
+[[ -s $PYTHONBREW_ROOT/etc/bashrc ]] && source $PYTHONBREW_ROOT/etc/bashrc
 
-PYTHON_USED=`pythonbrew list |  grep -A1 '(*)' | awk '{print $1}'`
+PYTHON_USED=`pythonbrew list |  grep '(*)' | awk '{print $1}'`
 PYTHON_VER=`echo "${PYTHON_USED##*-}"`
 if [ "X$PYTHON_VER" = "X0" ]; then
 	:
