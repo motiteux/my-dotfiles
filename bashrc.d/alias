@@ -1,3 +1,4 @@
+#!/bin/bash
 #===============================================================
 #
 # ALIASES AND FUNCTIONS
@@ -26,7 +27,7 @@ function pipinstall() {
         pip $@
     fi
 }
-#alias pip=pipinstall
+alias pip=pipinstall
 
 function pipdep() {
     list_pckg=`pip freeze --local | cut -d = -f 1`
@@ -40,6 +41,8 @@ function pipdep() {
 # Development #
 ###############
 alias eclipse='/opt/software/eclipse/eclipse-4.2.1/eclipse'
+
+alias git='/opt/software/git/git-1.8.1.3/bin/git'
 
 # Colorized git log
 alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
@@ -77,6 +80,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -I'                    # 'rm -i' prompts for every file
 alias ln='ln -i'
+alias rm='~/.bin/rm_safe'
 # -> Prevents accidentally clobbering files.
 alias mkdir='mkdir -p'
 alias chown='chown --preserve-root'
@@ -112,8 +116,8 @@ function ll_perso()
 }
 
 
-#alias ll='ls -l --group-directories-first'
-alias ll='ll_perso'
+alias ll='ls -l --group-directories-first'
+#alias ll='ll_perso'
 
 #-------------------------------------------------------------
 # spelling typos - highly personnal and keyboard-dependent :-)
@@ -323,7 +327,7 @@ function ask()          # See 'killps' for example of use.
 function corename()   # Get name of app that created a corefile.
 { 
     for file ; do
-        echo -n $file : ; /work/irlin168_1/titeuxm/Apps/bin/gdb --core=$file --batch | head -1
+        echo -n $file : ; /opt/software/gdb/bin/gdb --core=$file --batch | head -1
     done 
 }
 

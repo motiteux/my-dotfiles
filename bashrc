@@ -16,8 +16,17 @@ fi
 # Sourcing all sub config files
 if [ -d ~/.bashrc.d/ ]; then
     for s in ~/.bashrc.d/*; do
-	if [[ -f $s ]]; then
-		source $s
-	fi
+	    if [[ -f $s ]]; then
+            source $s
+	    fi
+    done;
+fi
+
+# Sourcing private config files
+if [ -d ~/.privaterc.d/ ]; then
+    for s in ~/.privaterc.d/*; do
+        if [[ -f $s ]]; then
+            source $s
+        fi
     done;
 fi
