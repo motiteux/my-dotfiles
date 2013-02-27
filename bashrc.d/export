@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export MAIL_ADDR="marcolivier.titeux@gmail.ch"
+export MAIL_ADDR="marcolivier.titeux@gmail.com"
 export USER_NAME=`getent passwd $USER | cut -d ':' -f 5 | cut -d ',' -f 1`
 
 export PATH=~/.bin:/opt/software/apache-maven/apache-maven-3.0.4/bin:$PATH
