@@ -1,34 +1,4 @@
-#-------------------------------------------------------------
-# Source global definitions (if any)
-#-------------------------------------------------------------
-if ! shopt -q login_shell ; then # We're not a login shell
-    # Need to redefine pathmunge, it get's undefined at the end of /etc/profile
-    pathmunge () {
-        if ! echo $PATH | /bin/egrep -q "(^|:)$1($|:)" ; then
-            if [ "$2" = "after" ] ; then
-                PATH=$PATH:$1
-            else
-                PATH=$1:$PATH
-            fi
-        fi
-    }
-
-    # Only display echos from profile.d scripts if we are no login shell
-    # and interactive - otherwise just process them to set envvars
-    for i in /etc/profile.d/*.sh; do
-        if [ -r "$i" ]; then
-            if [ "$i" == "kde.sh" ] || [ "$i" == "qt.sh" ]; then
-                continue
-            else
-                if [ "$PS1" ]; then
-                    . $i
-                else
-                    . $i >/dev/null 2>&1
-                fi
-            fi
-        fi
-    done
-fi
+#!/bin/bash
 
 #-------------------------------------------------------------
 # Automatic setting of $DISPLAY (if not set already).

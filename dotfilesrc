@@ -8,8 +8,8 @@ ignore = [
     '[a-zA-Z]~',
     '.pydevproject',
     '.project',
-    'TODO.md',
-    'README.md',
+    '.TODO.md',
+    '.README.md',
     'from_ctp']
 externals = {
     '.bzr.log':     '/dev/null'}

@@ -1,18 +1,27 @@
 #!/bin/bash
 
-export PATH=$PATH:~/.bin
+export MAIL_ADDR="marcolivier.titeux@gmail.com"
+export USER_NAME=`getent passwd $USER | cut -d ':' -f 5 | cut -d ',' -f 1`
+
+export PATH=~/.bin:/opt/software/apache-maven/apache-maven-3.0.4/bin:$PATH
 export SHELL=/bin/bash
 export PREFIX_INSTALL=/opt/software
 export JAVA_HOME=/usr/java/latest
+export CLASSPATH=.:/opt/dvpt/PersoDev/java-training/TIJ4:/usr/java/latest
+export MAVEN_HOME=/opt/software/apache-maven/apache-maven-3.0.4
 
 # Python
+export PYTHONBREW_HOME=$HOME/.pythonbrew
 export PYTHONBREW_ROOT=/usr/local/pythonbrew
 [[ -s $PYTHONBREW_ROOT/etc/bashrc ]] && source $PYTHONBREW_ROOT/etc/bashrc
 
+export PYTHONDONTWRITEBYTECODE=1
+export PYTHONSTARTUP="$HOME/.python/pythonrc.py"
+
 PYTHON_USED=`pythonbrew list |  grep '(*)' | awk '{print $1}'`
 PYTHON_VER=`echo "${PYTHON_USED##*-}"`
-if [ "X$PYTHON_VER" = "X0" ]; then
-	:
+if [ -z "$PYTHON_VER" ]; then
+    :
 else
 	pip completion --bash >> ~/.bashrc.d/sub_script/profile
     
