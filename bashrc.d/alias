@@ -42,7 +42,7 @@ function pipdep() {
 alias eclipse='/opt/software/eclipse/eclipse-4.2.1/eclipse'
 
 # Colorized git log
-alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --oneline --graph"
 
 has_virtualenv() {
     if [ -e .venv ]; then
