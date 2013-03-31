@@ -1,3 +1,5 @@
+* Will need to consolidate several files (duplicates, useless, similar)
+
 Things to have
 ==============
 
