@@ -1,5 +1,5 @@
 [dotfiles]
-repository = ~/Dotfiles
+repository = ~/.dotfiles/my-dotfiles
 ignore = [
     '.git',
     '.gitignore',
@@ -13,3 +13,7 @@ ignore = [
     'from_ctp']
 externals = {
     '.bzr.log':     '/dev/null'}
+packages = ['bin',
+    'bashrc.d',
+    'dev',
+    'tools']
