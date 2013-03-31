@@ -1,4 +1,4 @@
-#!/bin/bash
+    #!/bin/bash
 #===============================================================
 #
 # ALIASES AND FUNCTIONS
@@ -40,10 +40,6 @@ function pipdep() {
 ###############
 # Development #
 ###############
-alias eclipse='/opt/software/eclipse/eclipse-4.2.1/eclipse'
-
-alias git='/opt/software/git/git-1.8.1.3/bin/git'
-
 # Colorized git log
 alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --oneline --graph"
 
@@ -330,9 +326,6 @@ function corename()   # Get name of app that created a corefile.
         echo -n $file : ; /opt/software/gdb/bin/gdb --core=$file --batch | head -1
     done 
 }
-
-
-
 
 #=========================================================================
 # PROGRAMMABLE COMPLETION - ONLY SINCE BASH-2.04
