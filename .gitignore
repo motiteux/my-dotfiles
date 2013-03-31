@@ -3,3 +3,6 @@ id_rsa
 .ssh
 *.pyc
 gitconfig
+bashrc.d/export.local
+bashrc.d/sub_script/profile
+bin/mount_syno.sh

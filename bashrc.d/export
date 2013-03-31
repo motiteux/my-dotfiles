@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export PATH=~/.bin:$PATH
+
 # Python
 export PYTHONBREW_HOME=$HOME/.pythonbrew
 export PYTHONBREW_ROOT=/usr/local/pythonbrew

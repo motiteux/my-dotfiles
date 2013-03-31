@@ -5,12 +5,20 @@
 # Date: 01/11/2012
 
 RETVAL=0
-DE_STATUS=`synclient -l | grep TouchpadOff | sed -e 's/.*= //'`
-STATUS=$((1 - $DE_STATUS))
-
+TEST_SYNC=`xinput --list | grep sync`
+if [ $TEST_SYNC ]; then
+    DE_STATUS=$(synclient -l | grep TouchpadOff | sed -e 's/.*= //')
+    STATUS=$((1-$DE_STATUS))
+fi
 
 case "$1" in
 start)
+    HOSTNAME=$(hostname)
+    if [ $HOSTNAME == 'marco-laptop' ]; then
+        xinput set-prop 16 130 1
+        exit 0
+    fi
+    
     if [[ $STATUS -eq 1 ]]; then
         notify-send --icon=gtk-warning -t 900 "Touchpad already activated."
         exit 1
@@ -20,6 +28,12 @@ start)
     RETVAL=$?
   ;;
 stop)
+    HOSTNAME=$(hostname)
+    if [ $HOSTNAME == 'marco-laptop' ]; then
+        xinput set-prop 16 130 0
+        exit 0
+    fi
+    
     if [[ $STATUS -eq 0 ]]; then
         notify-send --icon=gtk-warning -t 900 "Touchpad already deactivated."
         exit 1
