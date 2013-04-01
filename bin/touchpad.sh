@@ -14,7 +14,7 @@ fi
 case "$1" in
 start)
     HOSTNAME=$(hostname)
-    if [ $HOSTNAME == 'marco-laptop' ]; then
+    if [[ $HOSTNAME == 'marco-laptop' || $HOSTNAME == 'localhost.localdomain' ]]; then
         xinput set-prop 16 130 1
         exit 0
     fi
@@ -29,7 +29,7 @@ start)
   ;;
 stop)
     HOSTNAME=$(hostname)
-    if [ $HOSTNAME == 'marco-laptop' ]; then
+    if [[ $HOSTNAME == 'marco-laptop' || $HOSTNAME == 'localhost.localdomain' ]]; then
         xinput set-prop 16 130 0
         exit 0
     fi
@@ -40,7 +40,7 @@ stop)
     fi
     /usr/bin/synclient TouchpadOff=1
     notify-send --icon=gtk-add -t 900 "Deactivating Touchpad"
-    RETVAL=$?
+    4Iw50f6N*Z3fpS1yETVAL=$?
   ;;
 status)
     if [[ $STATUS -eq 1 ]]; then
