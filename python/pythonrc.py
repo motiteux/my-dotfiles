@@ -21,4 +21,4 @@ def save_history(history=history):
             pass
 
 atexit.register(save_history)
-del os, atexit, readline, rlcompleter, save_history, history
+del save_history, history
