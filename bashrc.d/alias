@@ -40,6 +40,10 @@ function pipdep() {
 ###############
 # Development #
 ###############
+
+# Correct bug fir gtk-ssh
+alias git="SSH_ASKPASS='' git"
+
 # Colorized git log
 alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --oneline --graph"
 
