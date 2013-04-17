@@ -14,10 +14,11 @@ Then, I check everything is covered, ie, every file I need is symlinked to a pat
 Afterwards, I also have private dotfiles repository (with more sensitive data), into which I add other kind of files with a suffix .branch_name.
 In this repo, each branch is related to a machine I own or a environment I need. Then, I do the following::
 
-    > https://bitbucket.org/marc_olivier/my-private-dotfiles ~/.dotfiles/my-private-dotfiles
+    > cd ~/.dotfiles
+    > git clone git@bitbucket.org:marc_olivier/my-private-dotfiles ~/.dotfiles/my-private-dotfiles
     > dotfiles -C ~/.dotfiles/my-private-dotfiles -s -d
 
-I check nothing already taken into is not overriden::
+I check nothing already taken care of is not overriden, and then::
 
     > dotfiles -C ~/.dotfiles/my-private-dotfiles -s  # no -f option otherwise it will override global .dotfilesrc
 
