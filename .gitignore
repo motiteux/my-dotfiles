@@ -5,3 +5,4 @@ id_rsa
 gitconfig
 **/*private
 bashrc.d/sub_script/profile
+vim/.netrwhist
