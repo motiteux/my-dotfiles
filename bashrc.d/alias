@@ -1,4 +1,4 @@
-    #!/bin/bash
+#!/bin/bash
 #===============================================================
 #
 # ALIASES AND FUNCTIONS
@@ -21,7 +21,7 @@ alias pipup='pip freeze --local | cut -d = -f 1  | xargs pip install -U'
 function pipinstall() {
     if [[ $1 == "install" ]]; then
         shift
-        pip install --no-install --exists-action w --use-mirrors -I --download=$PIP_SDIST_INDEX $@
+        pip install --no-install --exists-action w --index-url https://restricted.crate.io/ --extra-index-url https://pypi.crate.io/simple/ --download=$PIP_SDIST_INDEX $@
         pip install --find-links=file://$PIP_SDIST_INDEX --no-index --index-url=file:///dev/null $@
     else
         pip $@
