@@ -59,6 +59,10 @@ venv_cd () {
 
 alias cd="venv_cd"
 
+alias ma="python manage.py"
+
+alias shell_plus="python manage.py shell_plus"
+
 
 ##########
 # System #

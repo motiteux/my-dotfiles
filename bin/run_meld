@@ -1,5 +1,5 @@
 #!/bin/bash -i
-PYTHON_USED=`pythonbrew list |  grep -A1 '(*)' | awk '{print $1}'`
+PYTHON_USED=`pythonbrew list |  grep '(*)' | awk '{print $1}'`
 PYTHON_VER=`echo "${PYTHON_USED##*-}"`
 if [ "X$PYTHON_VER" = "X0" ]; then
     /usr/bin/meld $@
