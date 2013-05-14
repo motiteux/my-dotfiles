@@ -18,11 +18,11 @@ In this repo, each branch is related to a machine I own or a environment I need.
     > cd ~/.dotfiles
     > git clone git@bitbucket.org:marc_olivier/my-private-dotfiles my-private-dotfiles
     > cd ~
-    > dotfiles -C ~/.dotfiles/my-private-dotfiles -s -d
+    > dotfiles -C ~/.dotfiles/my-private-dotfiles/dotfilesrc -s -d
 
 I check nothing already taken care of is not overriden, and then::
 
-    > dotfiles -C ~/.dotfiles/my-private-dotfiles -s  # no -f option otherwise it will override global .dotfilesrc
+    > dotfiles -C ~/.dotfiles/my-private-dotfiles/dotfilesrc -s  # no -f option otherwise it will override global .dotfilesrc
 
 You can rinse and repeat the previous procedure for any third-party repository you would have.
 
