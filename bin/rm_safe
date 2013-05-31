@@ -29,7 +29,7 @@ if [ $require_response ]; then
   echo $command
   echo -n '(yes/NO): '
   read response
-  if [ `tr [A-Z] [a-z] <<<$response` != yes ]; then
+  if [[ ! $response =~ 'y' ]]; then
     echo Aborting...
     exit 1
   fi
