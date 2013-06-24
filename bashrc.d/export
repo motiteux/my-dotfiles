@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH=~/.bin:~/.tools:$PATH
+export PATH=~/.bin:~/.tools:/opt/software/git/git-1.8.3/bin:$PATH
 
 # Python
 export PYTHONBREW_HOME=$HOME/.pythonbrew

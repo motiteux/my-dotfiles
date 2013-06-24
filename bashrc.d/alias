@@ -41,6 +41,8 @@ function pipdep() {
 # Development #
 ###############
 
+alias git='opt/software/git/git-1.8.3/bin/git'
+
 # Correct bug fir gtk-ssh
 alias git="SSH_ASKPASS='' git"
 
@@ -287,6 +289,12 @@ function extract()      # Handy Extract Program.
 
 function my_ps() { ps $@ -u $USER -o pid,%cpu,%mem,bsdtime,command ; }
 function pp() { my_ps f | awk '!/awk/ && $0~var' var=${1:-".*"} ; }
+
+function show_nb_threads() {
+    for pid in $@ ; do
+        echo -en "Number of threads for $(cat /proc/$pid/cmdline): $(ps uH p ${pid} | wc -l)\n"
+    done
+}
 
 
 function killps()                 # Kill by process name.
