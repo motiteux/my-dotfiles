@@ -9,8 +9,8 @@
 [ -z "$PS1" ] && return
 
 # Source global definitions
-if [ -f /etc/bashrc ]; then
-	source /etc/bashrc
+if [ -f /etc/bash.bashrc ]; then
+	source /etc/bash.bashrc
 fi
 
 # Sourcing all sub config files
