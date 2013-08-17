@@ -30,8 +30,6 @@ function pipdep() {
 # Development #
 ###############
 
-alias git='opt/software/git/git-1.8.3/bin/git'
-
 # Correct bug fir gtk-ssh
 alias git="SSH_ASKPASS='' git"
 
@@ -94,7 +92,7 @@ function gitio() {
 #-------------------------------------------------------------
 # The 'ls' family (this assumes you use a recent GNU ls)
 #-------------------------------------------------------------
-#alias ll="ls -l --group-directories-first"
+alias ll="ls -l --group-directories-first"
 alias ls='ls -hF --color'  # add colors for filetype recognition
 alias la='ls -Al'          # show hidden files
 alias lx='ls -lXB'         # sort by extension
@@ -107,13 +105,13 @@ alias lr='ls -lR'          # recursive ls
 alias tree='tree -Csu | more'     # nice alternative to 'recursive ls'
 
 # If your version of 'ls' doesn't support --group-directories-first try this:
-function ll_perso()
-{
-    ls -l "$@" | egrep "^d" ; ls -lXB "$@" 2>&- | egrep "^l" ; ls -lXB "$@" 2>&- | egrep "^-" && ls -lXB "$@" 2>&- | egrep -v "^[d|l|-]";
-}
+#function ll_perso()
+#{
+#    ls -l "$@" | egrep "^d" ; ls -lXB "$@" 2>&- | egrep "^l" ; ls -lXB "$@" 2>&- | egrep "^-" && ls -lXB "$@" 2>&- | egrep -v "^[d|l|-]";
+#}
 
 
-alias ll='ls -l --group-directories-first'
+#alias ll='ls -l --group-directories-first'
 #alias ll='ll_perso'
 
 #-------------------------------------------------------------
