@@ -1,25 +1,28 @@
 #!/usr/bin/env python
 
 # Inspired by https://github.com/dag/dotfiles/blob/master/python/.pythonrc
+# and http://jbisbee.blogspot.ch/2013/07/add-history-and-tab-completion-to.html
 
-import atexit
-import os
-import readline
-import rlcompleter
-
-readline.parse_and_bind('tab: complete')
-history = os.path.expanduser("~/.pythonhist")
-
-def save_history(history=history):
+try:
     import readline
-    readline.write_history_file(history)
+    import rlcompleter
+    import atexit
+    import os
+except ImportError:
+    print "Python shell enhancement modules not available."
+else:
+    readline.parse_and_bind('tab: complete')
+    history = os.path.expanduser("~/.pythonhist")
 
-    if os.path.exists(history):
-        try:
-            readline.read_history_file(history)
-        except IOError:
-            pass
+    def save_history(history=history):
+        readline.write_history_file(history)
 
-atexit.register(save_history)
-#del os, atexit, readline, rlcompleter, 
-del save_history, history
+        if os.path.exists(history):
+            try:
+                readline.read_history_file(history)
+            except IOError:
+                pass
+
+    atexit.register(save_history)
+    #del os, atexit, readline, rlcompleter, 
+    del save_history, history
