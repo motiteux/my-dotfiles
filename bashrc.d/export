@@ -3,15 +3,9 @@
 export PATH=~/.bin:~/.tools:$PATH
 
 # Python
-export PYTHONBREW_HOME=$HOME/.pythonbrew
-export PYTHONBREW_ROOT=/usr/local/pythonbrew
-[[ -s $PYTHONBREW_ROOT/etc/bashrc ]] && source $PYTHONBREW_ROOT/etc/bashrc
-
-export PYTHONDONTWRITEBYTECODE=1
 export PYTHONSTARTUP="$HOME/.python/pythonrc.py"
 
-PYTHON_USED=`pythonbrew list |  grep '(*)' | awk '{print $1}'`
-PYTHON_VER=`echo "${PYTHON_USED##*-}"`
+PYTHON_VER=`python -c 'import sys; print(sys.version[:5])'`
 if [ -z "$PYTHON_VER" ]; then
     :
 else
@@ -23,9 +17,10 @@ else
 	export VIRTUALENVWRAPPER_TMPDIR="$WORKON_HOME/tmp"
 	export VIRTUALENVWRAPPER_LOG_DIR="$WORKON_HOME"
 	export VIRTUALENVWRAPPER_HOOK_DIR="$WORKON_HOME"
-	export VIRTUALENVWRAPPER_VIRTUALENV=$PYTHONBREW_ROOT/pythons/Python-$PYTHON_VER/bin/virtualenv
-	export VIRTUALENVWRAPPER_PYTHON=$PYTHONBREW_ROOT/pythons/Python-$PYTHON_VER/bin/python
-	source $PYTHONBREW_ROOT/pythons/Python-$PYTHON_VER/bin/virtualenvwrapper.sh
+	export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+	export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+    export VIRTUALENV_SETUPTOOLS=true
+	source /usr/local/bin/virtualenvwrapper.sh
 	export PIP_VIRTUALENV_BASE=$WORKON_HOME # Tell pip to create its virtualenvs in $WORKON_HOME.
 	export PIP_RESPECT_VIRTUALENV=true # Tell pip to automatically use the currently active virtualenv.
 	export PIP_REQUIRE_VIRTUALENV=false # Tell pip to run only if there is a virtualenv currently activated
