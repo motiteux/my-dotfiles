@@ -31,5 +31,4 @@ if [ -d ~/.privaterc.d/ ]; then
     done;
 fi
 
-
-[ -s "/home/mtiteux/.scm_breeze/scm_breeze.sh" ] && source "/home/mtiteux/.scm_breeze/scm_breeze.sh"
+[ -s "~/.scm_breeze/scm_breeze.sh" ] && source "~/.scm_breeze/scm_breeze.sh"

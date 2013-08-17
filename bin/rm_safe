@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
  
 MAX_OBJS=5
 MIN_DEPTH=3
@@ -24,15 +24,16 @@ for arg; do
   command="$command $arg"
 done
  
-if [ $require_response ]; then
+if [[ $require_response ]]; then
   echo Really execute the following?
   echo $command
   echo -n '(yes/NO): '
   read response
-  if [[ ! $response =~ 'y' ]]; then
+  if [[ "$response" =~ "y" ]]; then
+    $command
+  else
     echo Aborting...
     exit 1
   fi
 fi
- 
-$command
+
