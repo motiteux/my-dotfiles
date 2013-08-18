@@ -32,6 +32,8 @@ set smartcase
 
 " Highlight search results
 set hlsearch
+set hlsearch!
+nnoremap <F3> :set hlsearch!<CR>
 
 " Makes search act like search in modern browsers
 set incsearch
@@ -121,3 +123,8 @@ set mouse=a
 " " Set this to the name of your terminal that supports mouse codes.
 " " Must be one of: xterm, xterm2, netterm, dec, jsbterm, pterm
 set ttymouse=xterm2
+
+" " Navigation
+map <ScrollWheelUp> <C-Y>
+map <ScrollWheelDown> <C-E>
+:noremap <LeftRelease> "+y<LeftRelease>
