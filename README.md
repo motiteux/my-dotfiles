@@ -12,7 +12,7 @@ Then, I check everything is covered, ie, every file I need is symlinked to a pat
 
     > dotfiles -s
 
-Afterwards, I also have private dotfiles repository (with more sensitive data), into which I add other kind of files with a suffix .branch_name.
+I also have private dotfiles repository (with more sensitive data), into which I add other kind of files with a suffix .branch_name.
 In this repo, each branch is related to a machine I own or a environment I need. Then, I do the following::
 
     > cd ~/.dotfiles
