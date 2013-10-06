@@ -42,7 +42,7 @@ export HISTSIZE=10000
 
 # lignes de l'historique conservées
 export HISTFILESIZE=20000
-export HISTTIMEFORMAT="%H:%M > "
+export HISTTIMEFORMAT="%F %T > "
 export HISTIGNORE="&:bg:fg:ll:h"
 
 log_bash_persistent_history()
