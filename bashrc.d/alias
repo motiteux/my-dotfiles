@@ -18,17 +18,6 @@
 
 alias pipup='pip freeze --local | cut -d = -f 1  | xargs pip install -U'
 
-function pipinstall() {
-    if [[ $1 == "install" ]]; then
-        shift
-        pip install --no-install --exists-action w --index-url https://restricted.crate.io/ --extra-index-url https://pypi.crate.io/simple/ --download=$PIP_SDIST_INDEX $@
-        pip install --find-links=file://$PIP_SDIST_INDEX --no-index --index-url=file:///dev/null $@
-    else
-        pip $@
-    fi
-}
-#alias pip=pipinstall
-
 function pipdep() {
     list_pckg=`pip freeze --local | cut -d = -f 1`
     for packa in $list_pckg
@@ -87,6 +76,7 @@ alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 
 alias du='du -kh'       # Makes a more readable output.
 alias df='df -kTh'
+alias dmesg='dmesg -L'
 
 #safety features
 alias cp='cp -i'
@@ -661,7 +651,4 @@ _meta_comp()
 complete -o default -F _meta_comp nohup \
 eval exec trace truss strace sotruss gdb
 complete -o default -F _meta_comp command type which man nice time
-
-#=========================================================================
-# SYSTEM ALIASES (Computing, Sytem and Development)
 

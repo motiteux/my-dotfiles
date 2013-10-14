@@ -2,25 +2,31 @@
 
 export PATH=$HOME/.bin:$HOME/.tools:$HOME/.rvm/bin:$PATH
 
-#export PYTHONDONTWRITEBYTECODE=1
+# Python
 export PYTHONSTARTUP="$HOME/.python/pythonrc.py"
 
-pip completion --bash >> $HOME/.bashrc.d/sub_script/profile
+PYTHON_VER=`python -c 'import sys; print(sys.version[:5])'`
+if [ -z "$PYTHON_VER" ]; then
+    :
+else
+	pip completion --bash >> ~/.bashrc.d/sub_script/profile
+    
+	source ~/.bashrc.d/sub_script/django_bash_completion
 
-source $HOME/.bashrc.d/sub_script/django_bash_completion
-
-export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_TMPDIR="$WORKON_HOME/tmp"
-export VIRTUALENVWRAPPER_LOG_DIR="$WORKON_HOME"
-export VIRTUALENVWRAPPER_HOOK_DIR="$WORKON_HOME"
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
-source /usr/local/bin/virtualenvwrapper.sh
-export PIP_VIRTUALENV_BASE=$WORKON_HOME # Tell pip to create its virtualenvs in $WORKON_HOME.
-export PIP_RESPECT_VIRTUALENV=true # Tell pip to automatically use the currently active virtualenv.
-export PIP_REQUIRE_VIRTUALENV=false # Tell pip to run only if there is a virtualenv currently activated
-export PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache
-export PIP_SDIST_INDEX=$PIP_DOWNLOAD_CACHE
+	export WORKON_HOME=$HOME/.virtualenvs
+	export VIRTUALENVWRAPPER_TMPDIR="$WORKON_HOME/tmp"
+	export VIRTUALENVWRAPPER_LOG_DIR="$WORKON_HOME"
+	export VIRTUALENVWRAPPER_HOOK_DIR="$WORKON_HOME"
+	export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+	export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+    export VIRTUALENV_SETUPTOOLS=true
+	source /usr/local/bin/virtualenvwrapper.sh
+	export PIP_VIRTUALENV_BASE=$WORKON_HOME # Tell pip to create its virtualenvs in $WORKON_HOME.
+	export PIP_RESPECT_VIRTUALENV=true # Tell pip to automatically use the currently active virtualenv.
+	export PIP_REQUIRE_VIRTUALENV=false # Tell pip to run only if there is a virtualenv currently activated
+	export PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache
+	export PIP_SDIST_INDEX=$PIP_DOWNLOAD_CACHE
+fi
 
 export TIMEFORMAT=$'\nreal %3R\tuser %3U\tsys %3S\tpcpu %P\n'
 export HOSTFILE=$HOME/.hosts    # Put list of remote hosts in ~/.hosts ...
@@ -32,10 +38,10 @@ export HOSTFILE=$HOME/.hosts    # Put list of remote hosts in ~/.hosts ...
 export HISTCONTROL=ignoredups
 
 # lignes de l'historique par session bash
-export HISTSIZE=20000
+export HISTSIZE=50000
 
 # lignes de l'historique conservées
-export HISTFILESIZE=50000
+export HISTFILESIZE=20000
 export HISTTIMEFORMAT="%F %T > "
 export HISTIGNORE="&:bg:fg:ll:h"
 
@@ -66,3 +72,4 @@ PROMPT_COMMAND="run_on_prompt_command"
 
 # Git SCM Breeze
 [[ -s "$HOME/.scm_breeze/scm_breeze.sh" ]] && source "$HOME/.scm_breeze/scm_breeze.sh"
+
