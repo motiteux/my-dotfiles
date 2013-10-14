@@ -9,8 +9,8 @@
 [ -z "$PS1" ] && return
 
 # Source global definitions
-if [ -f /etc/bashrc ]; then
-	source /etc/bashrc
+if [ -f /etc/bash.bashrc ]; then
+	source /etc/bash.bashrc
 fi
 
 # Sourcing all sub config files
@@ -31,5 +31,3 @@ if [ -d ~/.privaterc.d/ ]; then
     done;
 fi
 
-
-[ -s "/home/mtiteux/.scm_breeze/scm_breeze.sh" ] && source "/home/mtiteux/.scm_breeze/scm_breeze.sh"

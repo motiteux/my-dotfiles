@@ -1,13 +1,13 @@
 #!/bin/bash
 
-export PATH=~/.bin:~/.tools:$PATH
+export PATH=$HOME/.bin:$HOME/.tools:$HOME/.rvm/bin:$PATH
 
 #export PYTHONDONTWRITEBYTECODE=1
 export PYTHONSTARTUP="$HOME/.python/pythonrc.py"
 
-pip completion --bash >> ~/.bashrc.d/sub_script/profile
+pip completion --bash >> $HOME/.bashrc.d/sub_script/profile
 
-source ~/.bashrc.d/sub_script/django_bash_completion
+source $HOME/.bashrc.d/sub_script/django_bash_completion
 
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_TMPDIR="$WORKON_HOME/tmp"
@@ -32,11 +32,11 @@ export HOSTFILE=$HOME/.hosts    # Put list of remote hosts in ~/.hosts ...
 export HISTCONTROL=ignoredups
 
 # lignes de l'historique par session bash
-export HISTSIZE=10000
+export HISTSIZE=20000
 
 # lignes de l'historique conservées
-export HISTFILESIZE=20000
-export HISTTIMEFORMAT="%H:%M > "
+export HISTFILESIZE=50000
+export HISTTIMEFORMAT="%F %T > "
 export HISTIGNORE="&:bg:fg:ll:h"
 
 log_bash_persistent_history()
@@ -48,7 +48,7 @@ log_bash_persistent_history()
   local command_part="${BASH_REMATCH[2]}"
   if [ "$command_part" != "$PERSISTENT_HISTORY_LAST" ]
   then
-    echo $date_part "|" "$command_part" >> ~/.persistent_history
+    echo $date_part "|" "$command_part" >> $HOME/.persistent_history
     export PERSISTENT_HISTORY_LAST="$command_part"
   fi
 }
@@ -61,5 +61,8 @@ run_on_prompt_command()
 
 PROMPT_COMMAND="run_on_prompt_command"
 
+# RVM package manager
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
 # Git SCM Breeze
-[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
+[[ -s "$HOME/.scm_breeze/scm_breeze.sh" ]] && source "$HOME/.scm_breeze/scm_breeze.sh"

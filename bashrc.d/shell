@@ -68,6 +68,7 @@ shopt -s extglob        # Necessary for programmable completion.
 shopt -u mailwarn
 unset MAILCHECK 
 
+# History related
 shopt -s histappend histreedit histverify
 
 # supporte des terminaux redimensionnables (xterm et screen -r)

@@ -27,7 +27,7 @@ function pipinstall() {
         pip $@
     fi
 }
-alias pip=pipinstall
+#alias pip=pipinstall
 
 function pipdep() {
     list_pckg=`pip freeze --local | cut -d = -f 1`
@@ -49,6 +49,10 @@ alias git="SSH_ASKPASS='' git"
 # Colorized git log
 alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --oneline --graph"
 
+alias snapshot="git stash save 'snapshot: $(date)' && git stash apply 'stash@{0}'"
+alias ours="f() { git checkout --ours $@ && git add $@; }; f"
+alias theirs="f() { git checkout --theirs $@ && git add $@; }; f"
+
 has_virtualenv() {
     if [ -e .venv ]; then
         workon `cat .venv`
@@ -65,6 +69,8 @@ alias ma="python manage.py"
 
 alias shell_plus="python manage.py shell_plus"
 
+#TODO: Need to check if rlwrap is installed on system, else fallback to sqlplus
+alias sqlplus="rlwrap -c sqlplus"
 
 ##########
 # System #
