@@ -1,4 +1,8 @@
+call pathogen#incubate()
+call pathogen#helptags()
+
 set paste
+set pastetoggle=<F4>
 set autoindent
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -117,7 +121,70 @@ set ttyfast
 "
 " " Enable mouse use in all modes
 set mouse=a
+" " Hide mouse pointer while typing
+set mousehide
+set mousemodel=popup
+" " Make mouse middle click paste without formatting it.
+map <MouseMiddle> <Esc>"*p
 "
 " " Set this to the name of your terminal that supports mouse codes.
 " " Must be one of: xterm, xterm2, netterm, dec, jsbterm, pterm
 set ttymouse=xterm2
+
+" tagbar
+let g:tagbar_usearrows = 1
+let g:tagbar_autoclose = 0
+let g:tagbar_autofocus = 0
+let g:tagbar_compact = 1
+let g:tagbar_show_linenumbers = 1
+let g:tagbar_singleclick = 1
+let g:tagbar_autoshowtag = 1
+autocmd VimEnter * nested :call tagbar#autoopen(1)
+nmap <F8> :TagbarToggle<CR>
+" " CSS Support
+let g:tagbar_type_css = {
+\ 'ctagstype' : 'Css',
+    \ 'kinds'     : [
+        \ 'c:classes',
+        \ 's:selectors',
+        \ 'i:identities'
+    \ ]
+\ }
+" " Markdown Support
+let g:tagbar_type_markdown = {
+    \ 'ctagstype' : 'markdown',
+    \ 'kinds' : [
+        \ 'h:Heading_L1',
+        \ 'i:Heading_L2',
+        \ 'k:Heading_L3'
+    \ ]
+\ }
+" " Puppet Support
+let g:tagbar_type_puppet = {
+    \ 'ctagstype': 'puppet',
+    \ 'kinds': [
+        \'c:class',
+        \'s:site',
+        \'n:node',
+        \'d:definition'
+      \]
+    \}
+
+" http://git.io/vim-pathogen
+"execute pathogen#infect()
+
+" The PC is fast enough, do syntax highlight syncing from start
+autocmd BufEnter * :syntax sync fromstart
+
+" <leader>v selects the just pasted text
+nnoremap <leader>v V`]
+
+" Copy/Paste to and from Desktop Environment
+set clipboard=unnamedplus
+noremap <leader>yy "+y
+noremap <leader>pp "+gP
+
+" NERDtree on <leader>t
+nnoremap <leader>t :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
+
