@@ -3,17 +3,17 @@ repository = ~/.dotfiles/my-dotfiles
 ignore = [
     '.git',
     '.gitignore',
+    '.gitmodules',
     'dev',
     '*.swp',
     '[a-zA-Z]~',
-    '.pydevproject',
-    '.project',
-    '.TODO.md',
-    '.README.md',
-    'from_ctp']
+    'TODO.md',
+    'README.md']
 externals = {
     '.bzr.log':     '/dev/null'}
-packages = ['bin',
-    'bashrc.d',
-    'dev',
-    'tools']
+packages = ['bashrc.d',
+    'bin',
+    'git_template',
+    'python',
+    'sqlplus',
+    'vim']
