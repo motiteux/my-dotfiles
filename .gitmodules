@@ -24,7 +24,7 @@
 	url = git://github.com/majutsushi/tagbar.git
 [submodule "vim/bundle/pythonsyntax"]
 	path = vim/bundle/pythonsyntax
-	url = https://github.com/olivierverdier/python-syntax.vim.git
+	url = git://github.com/olivierverdier/python-syntax.vim.git
 [submodule "vim/bundle/easybuffer"]
 	path = vim/bundle/easybuffer
 	url = git://github.com/troydm/easybuffer.vim
