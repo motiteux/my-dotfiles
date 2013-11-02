@@ -15,5 +15,4 @@ packages = ['bashrc.d',
     'bin',
     'git_template',
     'python',
-    'sqlplus',
     'vim']
