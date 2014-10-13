@@ -3,7 +3,7 @@ This is my dotfiles structure. I am using the package [dotfiles](https://pypi.py
 On a new account, or a new machine, I usually do::
 
     > mkdir ~/.dotfiles && cd ~/.dotfiles
-    > git clone git@bitbucket.org:marc_olivier/my-dofiles.git my-dotfiles
+    > git clone git@bitbucket.org:marc_olivier/my-dotfiles.git my-dotfiles
     > ln -sfn ~/.dotfiles/my-dotfiles/dotfilesrc ~/.dotfilesrc
     > cd ~
     > dotfiles -s -d
