@@ -1,6 +1,6 @@
 #!/bin/bash
-
-export PATH=$HOME/.bin:$HOME/.tools:$HOME/.rvm/bin:$PATH
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH=$HOME/.bin:$HOME/.tools:$HOME/.rvm/bin:$PYENV_ROOT/bin:$PATH
 
 # Python
 export PYTHONSTARTUP="$HOME/.python/pythonrc.py"

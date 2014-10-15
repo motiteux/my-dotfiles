@@ -78,3 +78,6 @@ shopt -s checkwinsize
 if tty --quiet ; then
     stty erase '^?'
 fi
+
+# PYENV
+eval "$(pyenv init -)"
