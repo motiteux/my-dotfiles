@@ -1,4 +1,6 @@
-This is my dotfiles structure. I am using the package [dotfiles](https://pypi.python.org/pypi/dotfiles) to manage those. 
+This is my dotfiles structure. I am using the package [dotfiles](https://pypi.python.org/pypi/dotfiles) to manage those.
+
+Most of those dotfiles work with Debian and have been tested with Debian 8.
 
 On a new account, or a new machine, I usually do::
 
